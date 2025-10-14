@@ -12,7 +12,7 @@ cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
 
   printf "^c$black^ ^b$green^ CPU"
-  printf "^c$white^ ^b$grey^ $cpu_val"
+  printf "^c$white^ ^b$grey^ $cpu_val ^b$black^"
 }
 
 pkg_updates() {
@@ -23,13 +23,15 @@ pkg_updates() {
   if [ -z "$updates" ]; then
     printf "  ^c$green^    Fully Updated"
   else
-    printf "  ^c$green^    $updates"" updates"
+    printf "  ^c$white^    $updates"" updates"
   fi
 }
 
 battery() {
-  get_capacity="$(cat /sys/class/power_supply/BAT1/capacity)"
-  printf "^c$blue^   $get_capacity"
+  val="$(cat /sys/class/power_supply/BAT1/capacity)"
+  printf "^c$black^ ^b$red^ BAT"
+  printf "^c$white^ ^b$grey^ $val ^b$black^"
+
 }
 
 brightness() {
