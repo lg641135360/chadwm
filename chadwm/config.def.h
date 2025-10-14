@@ -151,7 +151,7 @@ static const Key keys[] = {
     { MODKEY,                           XK_Return,  spawn,          SHCMD("alacritty")},
     { MODKEY,                           XK_s,  spawn,          SHCMD("maim -s ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl '127.0.0.1:60828/ocr_translate?screenshot=false'")},
     // lock screen use slock
-    { MODKEY|ControlMask,               XK_l,  spawn,          SHCMD("slock"},
+    { MODKEY|ControlMask,               XK_l,  spawn,          SHCMD("slock")},
     // toggle stuff
     { MODKEY,                           XK_b,       togglebar,      {0} },
     { MODKEY|ControlMask,               XK_t,       togglegaps,     {0} },
