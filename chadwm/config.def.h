@@ -65,7 +65,7 @@ static const char *colors[][3]      = {
 /* tagging */
 static char *tags[] = {"", "", "", "", ""};
 
-static const char* eww[] = { "eww", "-c", "/home/siduck/.config/chadwm/eww", "open" , "eww", NULL };
+static const char* eww[] = { "eww", "-c", "~/.config/chadwm/eww", "open" , "eww", NULL };
 
 static const Launcher launchers[] = {
     /* command     name to display */
