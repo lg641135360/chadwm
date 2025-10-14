@@ -123,8 +123,7 @@ eww open eww
 
 # Patches
 
-- [systray](https://gitlab.com/-/snippets/2184056)
-- systray iconsize
+- systray
 - barpadding 
 - bottomstack
 - cfacts
