@@ -160,8 +160,8 @@ static const Key keys[] = {
     { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -config ~/.config/chadwm/rofi/config.rasi -show drun") },
     { MODKEY,                           XK_Return,  spawn,          SHCMD("alacritty")},
     { MODKEY,                           XK_s,  spawn,          SHCMD("maim -s ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl '127.0.0.1:60828/ocr_translate?screenshot=false'")},
-    // lock screen use slock
-    { MODKEY|ControlMask,               XK_l,  spawn,          SHCMD("slock")},
+    // lock screen use i3lock
+    { MODKEY|ControlMask,               XK_l,  spawn,          SHCMD("~/.config/scripts/lock")},
     // toggle stuff
     { MODKEY,                           XK_b,       togglebar,      {0} },
     { MODKEY|ControlMask,               XK_t,       togglegaps,     {0} },
