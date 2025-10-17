@@ -11,27 +11,16 @@ interval=0
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
 
-  printf "^c$black^ ^b$green^ CPU"
+  # printf "^c$black^ ^b$green^ CPU"
+  printf "^c$black^ ^b$green^ cpu"
   printf "^c$white^ ^b$grey^ $cpu_val ^b$black^"
 }
 
-pkg_updates() {
-  #updates=$({ timeout 20 doas xbps-install -un 2>/dev/null || true; } | wc -l) # void
-  updates=$({ timeout 20 checkupdates 2>/dev/null || true; } | wc -l) # arch
-  # updates=$({ timeout 20 aptitude search '~U' 2>/dev/null || true; } | wc -l)  # apt (ubuntu, debian etc)
-
-  if [ -z "$updates" ]; then
-    printf "  ^c$green^    Fully Updated"
-  else
-    printf "  ^c$white^    $updates"" updates"
-  fi
-}
-
 battery() {
-  val="$(cat /sys/class/power_supply/BAT0/capacity)"
-  printf "^c$black^ ^b$red^ BAT"
-  printf "^c$white^ ^b$grey^ $val ^b$black^"
+  val=$(cat /sys/class/power_supply/BAT0/capacity)
 
+  printf "^c$black^ ^b$red^ bat"
+  printf "^c$white^ ^b$grey^ $val%% ^b$black^"
 }
 
 brightness() {
@@ -43,7 +32,7 @@ mem() {
   mem_avail_mb=$(( $(awk '/MemAvailable:/ {print $2}' /proc/meminfo) / 1024 ))
   mem_total_mb=$(( $(awk '/MemTotal:/ {print $2}' /proc/meminfo) / 1024 ))
   mem_perc=$(awk -v a="$mem_total_mb" -v b="$mem_avail_mb" 'BEGIN { printf("%.1f", (a-b)/a*100) }')
-  printf "^c$black^ ^b$red^ MEM "
+  printf "^c$black^ ^b$red^ mem"
   printf "^c$white^ ^b$grey^%s%%" "$mem_perc"
 }
 
@@ -60,5 +49,5 @@ clock() {
 }
 
 while true; do
-    sleep 1 && xsetroot -name "$(cpu) $(mem) $(battery) $(clock)"
+    sleep 1 && xsetroot -name "$(cpu)$(mem)$(battery)$(clock)"
 done

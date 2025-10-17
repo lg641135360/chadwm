@@ -13,7 +13,7 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 8;   /* systray spacing */
-static const unsigned int systrayiconsize = 20; /* systray icon size in px */
+static const unsigned int systrayiconsize = 32; /* systray icon size in px */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails,display systray on the 1st monitor,False: display systray on last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -35,10 +35,13 @@ static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "togg
 static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
 static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
 static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
-#define ICONSIZE 19   /* icon size */
-#define ICONSPACING 8 /* space between icon and title */
+#define ICONSIZE 32   /* icon size */
+#define ICONSPACING 5 /* space between icon and title */
 
-static const char *fonts[]          = {"Iosevka:style:medium:size=12" ,"JetBrainsMono Nerd Font Mono:style:medium:size=19" };
+static const char *fonts[] = {
+    "JetBrainsMono Nerd Font:size=12",
+    "Noto Sans Mono CJK SC:size=12"
+};
 
 // theme
 #include "themes/tundra.h"
@@ -65,12 +68,19 @@ static const char *colors[][3]      = {
 /* tagging */
 static char *tags[] = {"", "", "", "", ""};
 
-static const char* eww[] = { "eww", "-c", "~/.config/chadwm/eww", "open" , "eww", NULL };
+#if ENABLE_LAUNCHER
+static const char* eww[] = { "/bin/sh", "-c", "eww daemon -c ~/.config/chadwm/eww 2>/dev/null; eww -c ~/.config/chadwm/eww open --toggle eww", NULL };
 
 static const Launcher launchers[] = {
     /* command     name to display */
-    { eww,         "" },
+    { eww,         ">" },
 };
+#else
+// Dummy launcher to avoid compilation errors
+static const Launcher launchers[] = {
+    { NULL, "" },
+};
+#endif
 
 static const int tagschemes[] = {
     SchemeTag1, SchemeTag2, SchemeTag3, SchemeTag4, SchemeTag5
@@ -89,7 +99,7 @@ static const Rule rules[] = {
     /* class      instance    title       tags mask     iscentered   isfloating   monitor */
     { "Gimp",     NULL,       NULL,       0,            0,           1,           -1 },
     { "Firefox",  NULL,       NULL,       1 << 8,       0,           0,           -1 },
-    { "eww",      NULL,       NULL,       0,            0,           1,           -1 },
+    // { "eww",      NULL,       NULL,       0,            0,           1,           -1 },
     { "Pot",      NULL,       NULL,       0,            0,	         1,           -1 },
 };
 
@@ -147,7 +157,7 @@ static const Key keys[] = {
     
     // screen shot
     { Mod1Mask|ShiftMask,               XK_s,       spawn,          SHCMD("flameshot gui") },
-    { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -show drun") },
+    { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -config ~/.config/chadwm/rofi/config.rasi -show drun") },
     { MODKEY,                           XK_Return,  spawn,          SHCMD("alacritty")},
     { MODKEY,                           XK_s,  spawn,          SHCMD("maim -s ~/.cache/com.pot-app.desktop/pot_screenshot_cut.png && curl '127.0.0.1:60828/ocr_translate?screenshot=false'")},
     // lock screen use slock

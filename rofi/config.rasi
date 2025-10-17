@@ -1,48 +1,56 @@
-configuration{
+configuration {
     modi: "run,drun,window";
-    lines: 5;
-    font: "Iosevka 12";
+    lines: 8;
+    font: "Iosevka Nerd Font 16";
     show-icons: true;
-    icon-theme: "Paper Mono";
-    terminal: "st";
+    icon-theme: "Papirus-Dark";
+    terminal: "alacritty";
     drun-display-format: "{icon} {name}";
-    location: 0;
+    location: 2;
+    yoffset: 200;
+    xoffset: 0;
     disable-history: false;
     hide-scrollbar: true;
-    display-drun: "   Apps ";
+    display-drun: " Apps ";
 }
 
-@theme "everblush"
+@theme "~/.config/chadwm/rofi/themes/dracula.rasi"
 
-element-text, element-icon , mode-switcher {
+element-text, element-icon, mode-switcher {
     background-color: inherit;
-    text-color:       inherit;
+    text-color: inherit;
 }
 
 window {
-    height: 360px;
+    width: 45%;
+    height: 500px;
     border: 3px;
     border-color: @border-col;
+    border-radius: 12px;
     background-color: @bg-col;
+    transparency: "real";
+    anchor: north;
 }
 
 mainbox {
     background-color: @bg-col;
+    margin: 20px;
 }
 
 inputbar {
-    children: [prompt,entry];
-    background-color: @bg-col;
-    border-radius: 5px;
-    padding: 2px;
+    children: [prompt, entry];
+    background-color: @bg-col-light;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin: 10px 15px 15px 15px;
 }
 
 prompt {
     background-color: @blue;
-    padding: 6px;
+    padding: 10px 15px;
+    border-radius: 8px;
     text-color: @bg-col;
-    border-radius: 3px;
-    margin: 20px 0px 0px 20px;
+    font: "Iosevka Nerd Font Bold 15";
 }
 
 textbox-prompt-colon {
@@ -51,48 +59,59 @@ textbox-prompt-colon {
 }
 
 entry {
-    padding: 6px;
-    margin: 20px 0px 0px 10px;
+    padding: 10px 12px;
     text-color: @fg-col;
-    background-color: @bg-col;
+    background-color: transparent;
+    font: "Iosevka Nerd Font 15";
 }
 
 listview {
-    border: 0px 0px 0px;
-    padding: 6px 0px 0px;
-    margin: 10px 0px 0px 20px;
+    border: 0;
+    padding: 8px 0 0;
+    margin: 10px 15px 10px 15px;
     columns: 2;
     background-color: @bg-col;
+    fixed-height: false;
+    spacing: 8px;
 }
 
 element {
-    padding: 5px;
+    padding: 12px 15px;
     background-color: @bg-col;
-    text-color: @fg-col  ;
+    text-color: @fg-col;
+    border-radius: 8px;
+    spacing: 12px;
+    font: "Iosevka Nerd Font 14";
 }
 
 element-icon {
-    size: 25px;
+    size: 32px;
 }
 
 element selected {
-    background-color:  @selected-col ;
-    text-color: @fg-col2  ;
+    background-color: @selected-col;
+    text-color: @fg-col2;
+    border-radius: 8px;
+    font: "Iosevka Nerd Font Bold 14";
 }
 
 mode-switcher {
-    spacing: 0;
-  }
+    spacing: 8px;
+    padding: 8px 10px;
+    margin: 0px 0px 10px 0px;
+    background-color: transparent;
+}
 
 button {
-    padding: 10px;
+    padding: 12px 18px;
     background-color: @bg-col-light;
     text-color: @grey;
-    vertical-align: 0.5; 
-    horizontal-align: 0.5;
+    border-radius: 8px;
+    font: "Iosevka Nerd Font 14";
 }
 
 button selected {
-  background-color: @bg-col;
-  text-color: @blue;
+    background-color: @blue;
+    text-color: @bg-col;
+    font: "Iosevka Nerd Font Bold 14";
 }
