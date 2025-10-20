@@ -16,6 +16,10 @@ if [ ! -f /tmp/chadwm_running ]; then
 	# pactl set-default-sink bluez_output.F4_4E_FD_45_ED_58.1
 
 	pot &
+	udiskie -t & # automount usb drives
+	pasystray & # volume control tray icon
+	nm-applet & # network manager tray icon
+	dunst & # notification daemon
 	touch /tmp/chadwm_running
 	trap 'rm -f /tmp/chadwm_running; exit' EXIT INT TERM
 fi
