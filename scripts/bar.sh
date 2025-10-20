@@ -43,7 +43,7 @@ mem() {
   mem_avail_mb=$(( $(awk '/MemAvailable:/ {print $2}' /proc/meminfo) / 1024 ))
   mem_total_mb=$(( $(awk '/MemTotal:/ {print $2}' /proc/meminfo) / 1024 ))
   mem_perc=$(awk -v a="$mem_total_mb" -v b="$mem_avail_mb" 'BEGIN { printf("%.1f", (a-b)/a*100) }')
-  printf "^c$black^ ^b$red^ MEM "
+  printf "^c$black^ ^b$red^ Mem "
   printf "^c$white^ ^b$grey^%s%%" "$mem_perc"
 }
 
@@ -55,8 +55,8 @@ wlan() {
 }
 
 clock() {
-	printf "^c$black^ ^b$darkblue^ 󱑆 "
-	printf "^c$black^^b$blue^ $(date '+%H:%M')  "
+	# printf "^c$black^ ^b$darkblue^ 󱑆 "
+	printf "^c$black^^b$blue^ $(date '+%a %b %_d %H:%M')  "
 }
 
 while true; do

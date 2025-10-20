@@ -62,13 +62,13 @@ static const char* colors[][3] = {
 };
 
 /* tagging */
-static char *tags[] = {"", "", "", "", ""};
+static char *tags[] = {"", "󰓠", "󰠮", "", ""};
 
-static const char* eww[] = { "eww", "-c", "/home/siduck/.config/chadwm/eww", "open" , "eww", NULL };
+static const char* lockscreen[] = { "~/.config/scripts/lock", NULL };
 
 static const Launcher launchers[] = {
     /* command     name to display */
-    { eww,         "" },
+    { lockscreen,         "󰷛" },
 };
 
 static const int tagschemes[] = {
@@ -145,12 +145,6 @@ static const Key keys[] = {
     { 0, XF86XK_AudioRaiseVolume, spawn, { .v = upvol } },
     { 0, XF86XK_MonBrightnessUp, spawn, { .v = light_up } },
     { 0, XF86XK_MonBrightnessDown, spawn, { .v = light_down } },
-
-    // screenshot fullscreen and cropped
-    { MODKEY | ControlMask, XK_u, spawn,
-        SHCMD("maim | xclip -selection clipboard -t image/png") },
-    { MODKEY, XK_u, spawn,
-        SHCMD("maim --select | xclip -selection clipboard -t image/png") },
 
     { MODKEY,                           XK_c,       spawn,          SHCMD("rofi -show drun") },
     { MODKEY,                           XK_Return,  spawn,          SHCMD("alacritty")},
