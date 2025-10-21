@@ -34,8 +34,8 @@ static const char *downvol[] = { "/usr/bin/pactl", "set-sink-volume", "0", "-5%"
 static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "toggle",  NULL };
 static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
 static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
-static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
-#define ICONSIZE 24 /* icon size */
+static const int new_window_attach_on_end = 1; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
+#define ICONSIZE 32 /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
 
 static const char* fonts[] = { "Iosevka:style:medium:size=12", "JetBrainsMono Nerd Font Mono:style:medium:size=19" };
@@ -65,7 +65,7 @@ static const char* colors[][3] = {
 /* tagging */
 static char *tags[] = {"", "󰓠", "󰠮", "", ""};
 
-static const char* lockscreen[] = { "~/.config/scripts/lock", NULL };
+static const char* lockscreen[] = { "sh", "-c", "~/.config/scripts/lock", NULL };
 
 static const Launcher launchers[] = {
     /* command     name to display */
