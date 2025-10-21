@@ -44,6 +44,7 @@ pot &
 udiskie -t & # automount usb drives
 pasystray & # volume control tray icon
 nm-applet & # network manager tray icon
+blueman-applet & # bluetooth tray icon
 dunst & # notification daemon
 
 dash ~/.config/chadwm/scripts/bar.sh &
