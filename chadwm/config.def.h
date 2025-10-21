@@ -13,6 +13,7 @@ static const unsigned int gappov    = 10;       /* vert outer gap between window
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 8;   /* systray spacing */
+static const unsigned int systrayiconsize = 32; /* systray icon size in px */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails,display systray on the 1st monitor,False: display systray on last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -34,19 +35,19 @@ static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "togg
 static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
 static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
 static const int new_window_attach_on_end = 0; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
-#define ICONSIZE 19 /* icon size */
+#define ICONSIZE 24 /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
 
 static const char* fonts[] = { "Iosevka:style:medium:size=12", "JetBrainsMono Nerd Font Mono:style:medium:size=19" };
 
 // theme
-#include "themes/nord.h"
+#include "themes/tundra.h"
 
 static const char* colors[][3] = {
     /*                     fg       bg      border */
     [SchemeNorm]       = { gray3,   black,  gray2 },
-    [SchemeSel]        = { gray4,   blue,   gray3  },
-    [SchemeTitle]      = { white,   black,  black }, // active window title
+    [SchemeSel]        = { gray4,   blue,   gray3 },
+    [SchemeTitle]      = { white,   black,  black },
     [TabSel]           = { blue,    gray2,  black },
     [TabNorm]          = { gray3,   black,  black },
     [SchemeTag]        = { gray3,   black,  black },

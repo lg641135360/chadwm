@@ -6,7 +6,7 @@
 interval=0
 
 # load colors
-. ~/.config/chadwm/scripts/bar_themes/nord
+. ~/.config/chadwm/scripts/bar_themes/tundra
 
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
@@ -28,7 +28,7 @@ pkg_updates() {
 }
 
 battery() {
-  val="$(cat /sys/class/power_supply/BAT1/capacity)"
+  val="$(cat /sys/class/power_supply/BAT0/capacity)"
   printf "^c$black^ ^b$red^ BAT"
   printf "^c$white^ ^b$grey^ $val ^b$black^"
 
