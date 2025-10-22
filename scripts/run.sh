@@ -43,8 +43,8 @@ redshift -l 30.6:114.3 -t 6500:4000 & # Auto night mode for Wuhan location
 pot &
 udiskie -t & # automount usb drives
 pasystray & # volume control tray icon
-# nm-applet & # network manager tray icon
-# blueman-applet & # bluetooth tray icon
+nm-applet & # network manager tray icon
+blueman-applet & # bluetooth tray icon
 dunst & # notification daemon
 
 # Start bar.sh and track its PID
