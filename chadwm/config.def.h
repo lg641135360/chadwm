@@ -9,11 +9,11 @@ static const unsigned int snap      = 32;       /* snap pixel */
 static const unsigned int gappih    = 10;       /* horiz inner gap between windows */
 static const unsigned int gappiv    = 10;       /* vert inner gap between windows */
 static const unsigned int gappoh    = 10;       /* horiz outer gap between windows and screen edge */
-static const unsigned int gappov    = 10;       /* vert outer gap between windows and screen edge */
+static const unsigned int gappov    = 5;       /* vert outer gap between windows and screen edge */
 static const int smartgaps          = 0;        /* 1 means no outer gap when there is only one window */
 static const unsigned int systraypinning = 0;   /* 0: sloppy systray follows selected monitor, >0: pin systray to monitor X */
 static const unsigned int systrayspacing = 8;   /* systray spacing */
-static const unsigned int systrayiconsize = 32; /* systray icon size in px */
+static const unsigned int systrayiconsize = 30; /* systray icon size in px */
 static const int systraypinningfailfirst = 1;   /* 1: if pinning fails,display systray on the 1st monitor,False: display systray on last monitor*/
 static const int showsystray        = 1;        /* 0 means no systray */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -35,7 +35,7 @@ static const char *mutevol[] = { "/usr/bin/pactl", "set-sink-mute",   "0", "togg
 static const char *light_up[] = {"/usr/bin/light", "-A", "5", NULL};
 static const char *light_down[] = {"/usr/bin/light", "-U", "5", NULL};
 static const int new_window_attach_on_end = 1; /*  1 means the new window will attach on the end; 0 means the new window will attach on the front,default is front */
-#define ICONSIZE 32 /* icon size */
+#define ICONSIZE 30 /* icon size */
 #define ICONSPACING 8 /* space between icon and title */
 
 static const char* fonts[] = { "Iosevka:style:medium:size=12", "JetBrainsMono Nerd Font Mono:style:medium:size=19" };
@@ -225,7 +225,7 @@ static const Key keys[] = {
     { MODKEY | ShiftMask, XK_w, setborderpx, { .i = default_border } },
 
     // kill dwm
-    { MODKEY | ControlMask, XK_q, spawn, SHCMD("killall bar.sh chadwm") },
+    { MODKEY | ControlMask, XK_q, spawn, SHCMD("killall chadwm") },
 
     // kill window
     { MODKEY, XK_q, killclient, { 0 } },

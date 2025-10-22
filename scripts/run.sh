@@ -43,9 +43,18 @@ redshift -l 30.6:114.3 -t 6500:4000 & # Auto night mode for Wuhan location
 pot &
 udiskie -t & # automount usb drives
 pasystray & # volume control tray icon
-nm-applet & # network manager tray icon
-blueman-applet & # bluetooth tray icon
+# nm-applet & # network manager tray icon
+# blueman-applet & # bluetooth tray icon
 dunst & # notification daemon
 
+# Start bar.sh and track its PID
 dash ~/.config/chadwm/scripts/bar.sh &
-while type chadwm >/dev/null; do chadwm && continue || break; done
+BAR_PID=$!
+
+# Run chadwm in a loop
+while type chadwm >/dev/null; do 
+  chadwm && continue || break
+done
+
+# Kill bar.sh when chadwm exits
+kill $BAR_PID 2>/dev/null
