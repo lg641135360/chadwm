@@ -11,7 +11,7 @@ interval=0
 cpu() {
   cpu_val=$(grep -o "^[^ ]*" /proc/loadavg)
 
-  printf "^c$black^ ^b$green^ CPU"
+  printf "^c$black^ ^b$green^ Cpu"
   printf "^c$white^ ^b$grey^ $cpu_val ^b$black^"
 }
 
@@ -54,11 +54,58 @@ wlan() {
 	esac
 }
 
+network() {
+
+	interface=$(ip route | grep '^default' | awk '{print $5}' | head -n1)
+
+	if [ -z "$interface" ]; then
+		printf "^c$white^ 󰈅 N/A"
+		return
+	fi
+
+	rx_bytes=$(cat /sys/class/net/$interface/statistics/rx_bytes)
+	tx_bytes=$(cat /sys/class/net/$interface/statistics/tx_bytes)
+
+	if [ ! -f /tmp/net_rx_prev ]; then
+		echo $rx_bytes > /tmp/net_rx_prev
+		echo $tx_bytes > /tmp/net_tx_prev
+		printf "^c$white^ 󰈅 --"
+		return
+	fi
+
+	rx_prev=$(cat /tmp/net_rx_prev)
+	tx_prev=$(cat /tmp/net_tx_prev)
+
+	rx_rate=$(( (rx_bytes - rx_prev) ))
+	tx_rate=$(( (tx_bytes - tx_prev) ))
+
+	echo $rx_bytes > /tmp/net_rx_prev
+	echo $tx_bytes > /tmp/net_tx_prev
+
+	if [ $rx_rate -gt 1048576 ]; then
+		rx_display=$(awk -v r=$rx_rate 'BEGIN {printf "%.1fM", r/1048576}')
+	elif [ $rx_rate -gt 1024 ]; then
+		rx_display=$(awk -v r=$rx_rate 'BEGIN {printf "%.0fK", r/1024}')
+	else
+		rx_display="${rx_rate}B"
+	fi
+
+	if [ $tx_rate -gt 1048576 ]; then
+		tx_display=$(awk -v t=$tx_rate 'BEGIN {printf "%.1fM", t/1048576}')
+	elif [ $tx_rate -gt 1024 ]; then
+		tx_display=$(awk -v t=$tx_rate 'BEGIN {printf "%.0fK", t/1024}')
+	else
+		tx_display="${tx_rate}B"
+	fi
+	printf "^c$black^ ^b$darkblue^ Net"
+	printf "^c$white^ ^b$grey^ ↓${rx_display} ^c$white^ ^b$grey^ ↑${tx_display} "
+}
+
 clock() {
 	# printf "^c$black^ ^b$darkblue^ 󱑆 "
-	printf "^c$black^^b$blue^ $(date '+%a %b %_d %H:%M')  "
+	printf "^c$black^^b$blue^ $(date '+%a %b %_d %H:%M')"
 }
 
 while true; do
-  sleep 1 && xsetroot -name "$(cpu) $(mem) $(clock)"
+  sleep 1 && xsetroot -name "$(network) $(cpu) $(mem) $(clock)"
 done
