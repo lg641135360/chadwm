@@ -33,7 +33,7 @@ fi
 if [ "$DISTRO" = "arch" ] && [ "$ARCH" = "amd64" ]; then
     xrdb merge ~/.config/chadwm/.Xresources-4k27
 	feh --bg-fill --randomize ~/Pictures/* &
-	~/Documents/Snipaste-2.10.8-x86_64.AppImage &
+	Snipaste &
 fi
 
 picom &
