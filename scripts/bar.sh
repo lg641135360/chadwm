@@ -107,5 +107,5 @@ clock() {
 }
 
 while true; do
-  sleep 1 && xsetroot -name "$(network) $(cpu) $(mem) $(clock)"
+  sleep 1 && xsetroot -name " $(network) $(cpu) $(mem) $(clock)"
 done
